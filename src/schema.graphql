@@ -1,0 +1,40 @@
+type Query {
+    nome: String!
+    hello(nome: String!): String!
+    me: Usuario!
+    publicacao: Publicacao
+    publicacoes: [Publicacao!]!
+    usuarios(nome: String): [Usuario!]!
+}
+
+type Mutation {
+    createUser(data: CreateUserInput!): Usuario!
+}
+
+type Subscription {
+    count: Int
+}
+
+input CreateUserInput {
+    nome: String!
+    email: String!
+}
+
+type Usuario {
+    id: String!
+    nome: String!
+    email: String
+    publicacoes: [Publicacao!]!
+}
+
+type Publicacao {
+    id: String!,
+    titulo: String!
+    autor: Usuario!
+}
+
+enum MutationType {
+    CREATED
+    UPDATED
+    DELETED
+}
